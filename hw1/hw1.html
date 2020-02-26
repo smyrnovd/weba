@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hw1-react</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #box {
+      height: 400px;
+      width: 400px;
+      /* background-color: #e3e3e3; */
+      box-shadow: 5px 5px 5px 2px #eee;
+    }
+    .image {
+      width: 100%;
+    }
+    .description {
+      font-size: 14px;
+    }
+    .title {
+      color: #fb6600;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .toggle {
+      margin-bottom: 10px;
+      display: block;
+      color: rgb(255, 145, 0);
+      /* padding-top: 15px; */
+      text-decoration: none;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div id="box"></div>
+    </div>
+    <script>
+      class View {
+        constructor() {
+          this.app = document.getElementById("box");
+
+          this.img = this.createElement("img", "image");
+          this.img.setAttribute("src", "item.img");
+          this.title = this.createElement("div", "title");
+          this.title.textContent = "item.title";
+          this.desc = this.createElement("p", "description");
+          var desc_text = "item.description";
+          var desc_text_short = desc_text.slice(0, 52) + "...";
+          this.desc.textContent = desc_text_short;
+          this.toggle = this.createElement("a", "toggle");
+          this.toggle.textContent = "Toggle";
+          this.toggle.setAttribute("href", "#");
+          this.toggle.addEventListener("click", function() {
+            if (this.desc.textContent !== desc_text) {
+              this.desc.textContent = desc_text;
+            } else {
+              this.desc.textContent = desc_text_short;
+            }
+          });
+
+          this.but1 = this.createElement("button");
+          this.but2 = this.createElement("button");
+          this.but3 = this.createElement("button");
+          this.but4 = this.createElement("button");
+          this.but1.textContent = "<<<";
+          this.but2.textContent = "<";
+          this.but3.textContent = ">";
+          this.but4.textContent = ">>>";
+
+          this.app.append(this.img);
+          this.app.append(this.title);
+          this.app.append(this.desc);
+          this.app.append(this.toggle);
+          this.app.append(this.but1);
+          this.app.append(this.but2);
+          this.app.append(this.but3);
+          this.app.append(this.but4);
+        }
+
+        createElement(elementTag, elementClass) {
+          const element = document.createElement(elementTag);
+          if (elementClass) {
+            element.classList.add(elementClass);
+          }
+          return element;
+        }
+      }
+
+      class Box {
+        setItem(item) {
+          this.item = item;
+          if (item < 0) this.item = 4;
+          if (item > 4) this.item = 0;
+          console.log(this.item);
+        }
+
+        constructor(view) {
+          this.view = view;
+          this.item = 0;
+          // this.dataLoad(item);
+
+          this.view.but1.addEventListener("click", function() {
+            this.setItem(0);
+          });
+          this.view.but2.addEventListener("click", this.setItem);
+          this.view.but3.addEventListener("click", this.setItem);
+          this.view.but4.addEventListener("click", this.setItem);
+        }
+
+        async dataLoad() {
+          return await fetch(
+            "https://my-json-server.typicode.com/IlyaLytvynov/ads-box-server/ads"
+          ).then(res => {
+            if (res.ok) {
+              res.json().then(res => {
+                console.log(this.item);
+                // this.view.box(res[item]);
+              });
+            } else {
+              console.log("sorry data didn't loaded");
+            }
+          });
+        }
+      }
+      new Box(new View());
+    </script>
+  </body>
+</html>

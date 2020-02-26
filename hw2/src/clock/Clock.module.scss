@@ -1,0 +1,18 @@
+.text {
+    position: absolute;
+    width: 100%;
+    top: 1em;
+    font-size: 10em;
+    color: white;
+    text-align: center;
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.view3 {
+    top: .5em;
+    text-align: left;
+}
