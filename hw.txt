@@ -1,0 +1,6 @@
+HOMEWORK 1:
+	repo: https://github.com/ellan77/weba/tree/master/hw1
+	public_link: https://smyrnov.dev/weba/hw1
+HOMEWORK 2:
+	repo: https://github.com/ellan77/weba/tree/master/hw2
+	public_link: https://smyrnov.dev/weba/hw2
