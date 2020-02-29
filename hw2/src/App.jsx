@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import "./App.scss";
 import Clock from "./clock/Clock";
 
+const titlePage = "Date and time type view №";
+
 class App extends React.Component {
   state = {
     index: 1,
     color: 0
   };
+
   render() {
+    document.title = `${titlePage}${this.state.index}`;
     let bgclass = "screen" + this.state.color;
     return (
       <div
@@ -30,6 +34,7 @@ export const App2 = () => {
   let [index, setIndex] = useState(1);
   let [color, setColor] = useState(0);
   let bgclass = "screen" + color;
+  document.title = `${titlePage}${index}`;
   return (
     <div
       className={bgclass}
