@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import Clock from "./clock/Clock";
 
@@ -25,4 +25,22 @@ class App extends React.Component {
   }
 }
 
-export default App;
+//Functional programming
+export const App2 = () => {
+  let [index, setIndex] = useState(1);
+  let [color, setColor] = useState(0);
+  let bgclass = "screen" + color;
+  return (
+    <div
+      className={bgclass}
+      onClick={() => {
+        index < 4 ? setIndex(index + 1) : setIndex(1);
+        setColor(Math.floor(Math.random() * 10));
+      }}
+    >
+      <Clock view={index} />
+    </div>
+  );
+};
+
+export default App2;
