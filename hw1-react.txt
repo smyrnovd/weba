@@ -1,0 +1,5 @@
+https://github.com/ellan77/ellan77.github.io/blob/master/sandbox/hw1.html
+
+https://smyrnov.dev/sandbox/hw1.html
+
+Задание выполнял как SPA приложение показвая знания JS
