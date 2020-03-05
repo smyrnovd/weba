@@ -3,11 +3,13 @@ import { setToLocalStorage, getFromLocalStorage } from "../../utils";
 
 export const App = () => {
   const TOKEN_STORAGE_KEY: string = "TOKEN";
-  const key: string = "82eb7c7eb6b385e06a18315ae9f5fbf5";
-  const redirectUrl: string = "http://localhost:3000";
-  const scope: string = "read";
-  const appName: string = "TrelloAppReact";
-  const reqUrl: string = `https://trello.com/1/authorize?expiration=1day&name=${appName}&scope=${scope}&response_type=token&key=${key}&return_url=${redirectUrl}`;
+  const {
+    REACT_APP_API_KEY,
+    REACT_APP_REDIRECT_URL,
+    REACT_APP_SCOPE,
+    REACT_APP_NAME
+  } = process.env;
+  const reqUrl: string = `https://trello.com/1/authorize?expiration=1day&name=${REACT_APP_NAME}&scope=${REACT_APP_SCOPE}&response_type=token&key=${REACT_APP_API_KEY}&return_url=${REACT_APP_REDIRECT_URL}`;
 
   let [token, setToken] = useState("");
 
@@ -32,7 +34,9 @@ export const App = () => {
 
   return (
     <div>
+      {/* Block without Token */}
       {!token && <a href={reqUrl}>Create Trello Token</a>}
+      {/* Block with Token */}
       {token && (
         <div>
           <p>{token}</p>
