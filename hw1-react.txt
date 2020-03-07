@@ -1,5 +1,5 @@
-https://github.com/ellan77/ellan77.github.io/blob/master/sandbox/hw1.html
-
-https://smyrnov.dev/sandbox/hw1.html
+HOMEWORK 1:
+	repo: https://github.com/ellan77/weba/tree/master/hw1
+	public_link: https://smyrnov.dev/weba/hw1
 
 Задание выполнял как SPA приложение показвая знания JS
