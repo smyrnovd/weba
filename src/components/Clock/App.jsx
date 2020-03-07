@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.scss";
 import Clock from "./clock/Clock";
 
-const titlePage = "Date and time type view №";
+const titlePage = "View №";
 
 class App extends React.Component {
   state = {

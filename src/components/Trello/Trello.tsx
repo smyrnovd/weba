@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { setToLocalStorage, getFromLocalStorage } from "../../utils";
+import { syncToken } from "../../utils/hooks/syncToken";
+import { removeToken } from "../../utils/hooks/removeToken";
 
-export const App = () => {
-  const TOKEN_STORAGE_KEY: string = "TOKEN";
+export const Trello = () => {
   const {
     REACT_APP_API_KEY,
     REACT_APP_REDIRECT_URL,
@@ -13,24 +13,7 @@ export const App = () => {
 
   let [token, setToken] = useState("");
 
-  const removeToken = () => {
-    setToken("");
-    setToLocalStorage(TOKEN_STORAGE_KEY, "");
-  };
-
-  useEffect(() => {
-    const tokenUrl: string = window.location.hash.split("=")[1];
-    if (tokenUrl) {
-      setToken(tokenUrl);
-      setToLocalStorage(TOKEN_STORAGE_KEY, tokenUrl);
-      console.log("if");
-    } else {
-      const localToken: any = getFromLocalStorage(TOKEN_STORAGE_KEY);
-      setToken(localToken);
-      console.log(localToken);
-      console.log("else");
-    }
-  }, []);
+  useEffect(() => syncToken(setToken), [token]);
 
   return (
     <div>
@@ -40,7 +23,10 @@ export const App = () => {
       {token && (
         <div>
           <p>{token}</p>
-          <a href="/" onClick={removeToken}>
+          <a
+            href={REACT_APP_REDIRECT_URL}
+            onClick={() => removeToken(setToken)}
+          >
             You can remove token with this button
           </a>
         </div>

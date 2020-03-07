@@ -1,0 +1,3 @@
+HOMEWORK 3:
+	repo: https://github.com/ellan77/weba/tree/master/hw3
+	public_link: https://smyrnov.dev/weba/hw3
