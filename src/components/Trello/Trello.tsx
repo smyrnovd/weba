@@ -27,7 +27,7 @@ export const Trello = () => {
             href={REACT_APP_REDIRECT_URL}
             onClick={() => removeToken(setToken)}
           >
-            You can remove token with this button
+            You can remove token with this link
           </a>
         </div>
       )}
