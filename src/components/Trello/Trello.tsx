@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { syncToken } from "../../utils/hooks/syncToken";
+import { Login } from "../Login";
 import { Dashboard } from "../Dashboard/Dashboard";
+import { isAuth } from "../../utils/isAuth";
+import { getFromLocalStorage } from "../../utils/storage";
+import { TOKEN_STORAGE_KEY } from "../../utils/storage";
+import { Switch, Redirect } from "react-router-dom";
 
 export const Trello = () => {
-  const {
-    REACT_APP_API_KEY,
-    REACT_APP_REDIRECT_URL,
-    REACT_APP_SCOPE,
-    REACT_APP_NAME
-  } = process.env;
-  const reqUrl: string = `https://trello.com/1/authorize?expiration=1day&name=${REACT_APP_NAME}&scope=${REACT_APP_SCOPE}&response_type=token&key=${REACT_APP_API_KEY}&return_url=${REACT_APP_REDIRECT_URL}`;
-
-  let [token, setToken] = useState("");
-
-  useEffect(() => syncToken(setToken), [token]);
-
-  return (
-    <div>
-      {/* Block without Token */}
-      {!token && <a href={reqUrl}>Create Trello Token</a>}
-      {/* Block with Token */}
-      {token && <Dashboard token="token" setToken="setToken" />}
-    </div>
-  );
+  if (isAuth()) {
+    const token = getFromLocalStorage(TOKEN_STORAGE_KEY);
+    return (
+      <Switch>
+        <Dashboard token={token} />
+      </Switch>
+    );
+  } else {
+    return <Redirect to="/webacademy/trello/login" />;
+  }
 };

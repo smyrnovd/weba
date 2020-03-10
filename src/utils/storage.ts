@@ -1,4 +1,5 @@
 export const TOKEN_STORAGE_KEY: string = "TOKEN";
+
 export const setToLocalStorage = (key: string, data: any) => {
   window.localStorage.setItem(key, data);
 };
