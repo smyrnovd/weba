@@ -1,9 +1,9 @@
 import React from "react";
-import { setToLocalStorage, TOKEN_STORAGE_KEY } from "../../utils/storage";
-import { Redirect } from "react-router-dom";
+import { RouteChildrenProps, Redirect } from "react-router";
+import { setToLocalStorage } from "../../utils";
 
-export const OAuth = () => {
-  const tokenFromUrl: string = window.location.hash.split("=")[1];
-  setToLocalStorage(TOKEN_STORAGE_KEY, tokenFromUrl);
-  return <Redirect to="/webacademy/trello" />;
+export const OAuth = (props: RouteChildrenProps) => {
+  let tokenProps: string = props.location.hash.split("=")[1];
+  setToLocalStorage(tokenProps);
+  return <Redirect to="/webacademy/trello/dashboard" />;
 };

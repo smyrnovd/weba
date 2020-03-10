@@ -1,24 +1,42 @@
 import React from "react";
 import { Link, Route, Switch, Redirect } from "react-router-dom";
-import { Trello } from "../Trello";
-import { ClockPage } from "../ClockPage";
+import { routes } from "../../utils";
 
 export const App = () => {
+  const renderLinks = () => {
+    return (
+      <header>
+        {routes.map((route: any, i: number) => (
+          <Link key={i} to={route.path}>
+            {route.title}
+          </Link>
+        ))}
+      </header>
+    );
+  };
+
+  const renderApps = () => {
+    return (
+      <main>
+        <Switch>
+          {routes.map((route: any, i: number) => (
+            <Route
+              key={i}
+              exact={route.exact}
+              path={route.path}
+              render={props => route.render({ ...props })}
+            />
+          ))}
+          <Redirect to="/webacademy/404" />
+        </Switch>
+      </main>
+    );
+  };
+
   return (
     <>
-      <div>
-        <Link to="/webacademy/clock">Clock App</Link>
-      </div>
-
-      <div>
-        <Link to="/webacademy/trello">Trello App</Link>
-      </div>
-
-      <Switch>
-        <Route path="/webacademy/clock" exact component={ClockPage} />
-        <Route path="/webacademy/trello" component={Trello} />
-        <Redirect to="/webacademy" />
-      </Switch>
+      {renderLinks()}
+      {renderApps()}
     </>
   );
 };

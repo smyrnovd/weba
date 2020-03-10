@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import styles from "./Clock.module.scss";
 
 const Clock = props => {
-  function tick() {
+  const tick = () => {
     setDate(new Date());
-  }
+  };
 
   useEffect(() => {
     setInterval(() => tick(), 1000);
@@ -26,10 +26,10 @@ const Clock = props => {
   };
   let clockView1 = date.toLocaleTimeString("en-US");
   let clockView2 = date.toLocaleDateString("en-US");
-  let clockView3 = `${months[date.getMonth()]} ${date.getDate()}th ${date
-    .getFullYear()
-    .toString()
-    .slice(2, 4)}`;
+  // let clockView3 = `${months[date.getMonth()]} ${date.getDate()}th ${date
+  //   .getFullYear()
+  //   .toString()
+  //   .slice(2, 4)}`;
   let clockView4 = date.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit"
@@ -52,7 +52,12 @@ const Clock = props => {
       <h1
         className={`${styles.text}  ${props.view === 3 ? styles.visible : ""}`}
       >
-        {clockView3}
+        {`${months[date.getMonth()]}`}
+        <br />
+        {`${date.getDate()}th ${date
+          .getFullYear()
+          .toString()
+          .slice(2, 4)}`}
       </h1>
 
       <h1

@@ -1,4 +1,6 @@
 import React from "react";
+import { getFromLocalStorage } from "../../utils";
+import { Redirect } from "react-router-dom";
 
 export const Login = () => {
   const {
@@ -8,10 +10,15 @@ export const Login = () => {
     REACT_APP_NAME
   } = process.env;
   const reqUrl: string = `https://trello.com/1/authorize?expiration=1day&name=${REACT_APP_NAME}&scope=${REACT_APP_SCOPE}&response_type=token&key=${REACT_APP_API_KEY}&return_url=${REACT_APP_REDIRECT_URL}`;
+  const tokenStorage = getFromLocalStorage();
 
-  return (
-    <div>
-      <a href={reqUrl}>Create Trello Token</a>
-    </div>
-  );
+  if (!!tokenStorage) {
+    return <Redirect to="/webacademy/trello/dashboard" />;
+  } else {
+    return (
+      <div>
+        <a href={reqUrl}>Create Trello Token</a>
+      </div>
+    );
+  }
 };

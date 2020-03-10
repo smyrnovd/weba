@@ -1,4 +1,4 @@
-import { setToLocalStorage, TOKEN_STORAGE_KEY } from ".";
+import { setToLocalStorage } from ".";
 export const removeToken = () => {
-  setToLocalStorage(TOKEN_STORAGE_KEY, null);
+  setToLocalStorage("");
 };
