@@ -1,9 +1,14 @@
 import React from "react";
-// import { Trello } from "../Trello";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
+import { Trello } from "../Trello";
 import { ClockPage } from "../ClockPage";
+
 export const App = () => (
   <>
-    {/* <Trello /> */}
-    <ClockPage />
+    <Switch>
+      <Route path="/webacademy/clock" exact component={ClockPage} />
+      <Route path="/webacademy/trello" component={Trello} />
+      <Redirect to="/webacademy/clock" />
+    </Switch>
   </>
 );

@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import styles from "./Clock.module.scss";
 
 const Clock = props => {
+  function tick() {
+    setDate(new Date());
+  }
+
+  useEffect(() => {
+    setInterval(() => tick(), 1000);
+  });
+  const [date, setDate] = useState(new Date());
   const months = {
     0: "January",
     1: "February",
@@ -16,15 +24,15 @@ const Clock = props => {
     10: "November",
     11: "December"
   };
-
-  let [date, setDate] = useState(new Date());
-
-  function tick() {
-    setDate(new Date());
-  }
-
-  useEffect(() => {
-    setInterval(() => tick(), 1000);
+  let clockView1 = date.toLocaleTimeString("en-US");
+  let clockView2 = date.toLocaleDateString("en-US");
+  let clockView3 = `${months[date.getMonth()]} ${date.getDate()}th ${date
+    .getFullYear()
+    .toString()
+    .slice(2, 4)}`;
+  let clockView4 = date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit"
   });
 
   return (
@@ -32,36 +40,25 @@ const Clock = props => {
       <h1
         className={`${styles.text} ${props.view === 1 ? styles.visible : ""}`}
       >
-        {date.toLocaleTimeString("en-US")}
+        {clockView1}
       </h1>
 
       <h1
         className={`${styles.text} ${props.view === 2 ? styles.visible : ""}`}
       >
-        {date.toLocaleDateString("en-US")}
+        {clockView2}
       </h1>
 
       <h1
-        className={`${styles.text} ${styles.view3} ${
-          props.view === 3 ? styles.visible : ""
-        }`}
+        className={`${styles.text}  ${props.view === 3 ? styles.visible : ""}`}
       >
-        {months[date.getMonth()]}
-        <br />
-        {date.getDate() + "th "}
-        {date
-          .getFullYear()
-          .toString()
-          .slice(2, 4)}
+        {clockView3}
       </h1>
 
       <h1
         className={`${styles.text} ${props.view === 4 ? styles.visible : ""}`}
       >
-        {date.toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit"
-        })}
+        {clockView4}
       </h1>
     </div>
   );

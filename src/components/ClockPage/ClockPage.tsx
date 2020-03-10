@@ -7,8 +7,8 @@ import { randomNumber } from "../../utils/randomNumber";
 export const ClockPage = () => {
   let [index, setIndex] = useState(1);
   let [color, setColor] = useState(0);
-  let bgclass = `screen${color}`;
-  let titlePage = `Clock view №${index}`;
+  let bgclass: string = `screen${color}`;
+  let titlePage: string = `Clock view №${index}`;
   return (
     <>
       <Helmet>

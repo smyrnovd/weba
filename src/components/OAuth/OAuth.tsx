@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { syncToken } from "../../utils/hooks/syncToken";
-import { Dashboard } from "../Dashboard/Dashboard";
 
-export const Trello = () => {
+export const OAuth = () => {
   const {
     REACT_APP_API_KEY,
     REACT_APP_REDIRECT_URL,
@@ -17,10 +16,7 @@ export const Trello = () => {
 
   return (
     <div>
-      {/* Block without Token */}
-      {!token && <a href={reqUrl}>Create Trello Token</a>}
-      {/* Block with Token */}
-      {token && <Dashboard token="token" setToken="setToken" />}
+      <a href={reqUrl}>Create Trello Token</a>}
     </div>
   );
 };
