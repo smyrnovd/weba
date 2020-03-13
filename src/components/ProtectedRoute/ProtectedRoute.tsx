@@ -5,6 +5,7 @@ import {
   RouteProps,
   RouteComponentProps
 } from "react-router-dom";
+import { isLoggedIn } from "../../utils";
 
 type ProtectedRouteType = RouteProps & {
   isAuthenticated: boolean;
@@ -19,7 +20,7 @@ export const ProtectedRoute: FunctionComponent<ProtectedRouteType> = ({
     <Route
       {...rest}
       render={(routeCompProps: RouteComponentProps) =>
-        isAuthenticated ? (
+        isLoggedIn() ? (
           render!(routeCompProps)
         ) : (
           <Redirect to="/webacademy/trello/login" />

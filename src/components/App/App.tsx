@@ -2,13 +2,12 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { routes } from "../../utils";
 import { ProtectedRoute } from "../ProtectedRoute";
-import { isLoggedIn } from "../../utils";
 import { Nav } from "../Nav";
 
 export const App = () => {
   const renderRoute = (route: any, i: number) => {
     if (route.isProtected) {
-      return <ProtectedRoute {...route} key={i} isAuthenticated={isLoggedIn} />;
+      return <ProtectedRoute {...route} key={i} />;
     } else {
       return (
         <Route

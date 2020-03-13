@@ -10,6 +10,16 @@ import { Dashboard } from "../components/Dashboard";
 
 export const routes = [
   {
+    path: "/webacademy",
+    render: () => <h1>Choose the application</h1>,
+    exact: true
+  },
+  {
+    path: "/webacademy/trello",
+    render: () => <Redirect to="/webacademy/trello/login" />,
+    exact: true
+  },
+  {
     path: "/webacademy/clock",
     exact: true,
     render: () => <ClockPage />,
@@ -22,19 +32,12 @@ export const routes = [
   {
     path: "/webacademy/trello/login",
     render: () => <Login />,
-    title: "Trello App",
-    exact: true
+    title: "Trello App"
   },
   {
     path: "/webacademy/trello/dashboard",
     render: () => <Dashboard />,
-    isProtected: true,
-    exact: true
-  },
-  {
-    path: "/webacademy/trello",
-    render: () => <Redirect to="/webacademy/trello/login" />,
-    exact: true
+    isProtected: true
   },
 
   {

@@ -5,8 +5,7 @@ import { setToLocalStorage } from "../../utils";
 export const OAuth: FunctionComponent<RouteChildrenProps> = (
   props: RouteChildrenProps
 ) => {
-  let tokenProps: string = props.location.hash.split("=")[1];
-
-  setToLocalStorage(tokenProps);
+  const token: string = props.location.hash.split("=")[1];
+  setToLocalStorage(token);
   return <Redirect to="/webacademy/trello/dashboard" />;
 };
