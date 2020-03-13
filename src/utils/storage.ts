@@ -7,3 +7,7 @@ export const setToLocalStorage = (data: any) => {
 export const getFromLocalStorage = () => {
   return window.localStorage.getItem(TOKEN_STORAGE_KEY);
 };
+
+export const isLoggedIn = () => {
+  return !!getFromLocalStorage();
+};

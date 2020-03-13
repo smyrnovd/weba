@@ -6,6 +6,8 @@ import { OAuth } from "../components/OAuth";
 import { NotFound } from "../components/NotFound";
 import { Dashboard } from "../components/Dashboard";
 
+//описать типы данных
+
 export const routes = [
   {
     path: "/webacademy/clock",
@@ -26,6 +28,7 @@ export const routes = [
   {
     path: "/webacademy/trello/dashboard",
     render: () => <Dashboard />,
+    isProtected: true,
     exact: true
   },
   {

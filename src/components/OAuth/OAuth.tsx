@@ -1,9 +1,12 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { RouteChildrenProps, Redirect } from "react-router";
 import { setToLocalStorage } from "../../utils";
 
-export const OAuth = (props: RouteChildrenProps) => {
+export const OAuth: FunctionComponent<RouteChildrenProps> = (
+  props: RouteChildrenProps
+) => {
   let tokenProps: string = props.location.hash.split("=")[1];
+
   setToLocalStorage(tokenProps);
   return <Redirect to="/webacademy/trello/dashboard" />;
 };

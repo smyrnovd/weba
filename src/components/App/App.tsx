@@ -1,32 +1,31 @@
 import React from "react";
-import { Link, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { routes } from "../../utils";
+import { ProtectedRoute } from "../ProtectedRoute";
+import { isLoggedIn } from "../../utils";
+import { Nav } from "../Nav";
 
 export const App = () => {
-  const renderLinks = () => {
-    return (
-      <header>
-        {routes.map((route: any, i: number) => (
-          <Link key={i} to={route.path}>
-            {route.title}
-          </Link>
-        ))}
-      </header>
-    );
+  const renderRoute = (route: any, i: number) => {
+    if (route.isProtected) {
+      return <ProtectedRoute {...route} key={i} isAuthenticated={isLoggedIn} />;
+    } else {
+      return (
+        <Route
+          key={i}
+          exact={route.exact}
+          path={route.path}
+          render={props => route.render({ ...props })}
+        />
+      );
+    }
   };
 
-  const renderApps = () => {
+  const renderContent = () => {
     return (
       <main>
         <Switch>
-          {routes.map((route: any, i: number) => (
-            <Route
-              key={i}
-              exact={route.exact}
-              path={route.path}
-              render={props => route.render({ ...props })}
-            />
-          ))}
+          {routes.map(renderRoute)}
           <Redirect to="/webacademy/404" />
         </Switch>
       </main>
@@ -35,8 +34,8 @@ export const App = () => {
 
   return (
     <>
-      {renderLinks()}
-      {renderApps()}
+      <Nav />
+      {renderContent()}
     </>
   );
 };
