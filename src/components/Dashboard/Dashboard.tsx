@@ -2,6 +2,9 @@ import React from "react";
 import { removeToken } from "../../utils/removeToken";
 import { getFromLocalStorage } from "../../utils";
 
+//компонет борд
+//роуты для бордов
+//детальный вид борда
 export const Dashboard = (props: any) => {
   const { REACT_APP_API_KEY } = process.env;
   const token = getFromLocalStorage();
