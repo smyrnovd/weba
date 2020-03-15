@@ -13,7 +13,7 @@ type RoutesType = {
   title?: string;
   isProtected?: boolean;
 };
-
+//ПРОВЕРИТЬ ТИПИЗАЦИЮ
 export const routes = [
   {
     path: "/webacademy",
