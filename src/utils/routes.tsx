@@ -6,7 +6,13 @@ import { OAuth } from "../components/OAuth";
 import { NotFound } from "../components/NotFound";
 import { Dashboard } from "../components/Dashboard";
 
-//описать типы данных
+type RoutesType = {
+  path: string;
+  exact?: boolean;
+  render: any;
+  title?: string;
+  isProtected?: boolean;
+};
 
 export const routes = [
   {
