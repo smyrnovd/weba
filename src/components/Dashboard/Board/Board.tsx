@@ -2,7 +2,7 @@ import React from "react";
 
 export const Board = (props: any) => {
   return (
-    <div className="card col-lg-4">
+    <div className="card col-lg-3 m-3">
       <img src={props.card_img} className="card-img-top" alt="card image"></img>
       <div className="card-body">
         <h5 className="card-title">{props.board_name}</h5>
@@ -11,7 +11,7 @@ export const Board = (props: any) => {
           bulk of the card's content.
         </p>
         <a href="#" className="btn btn-primary">
-          Go to board
+          Перейти в доску
         </a>
       </div>
     </div>

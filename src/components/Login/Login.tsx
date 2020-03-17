@@ -15,8 +15,10 @@ export const Login = () => {
     return <Redirect to="/webacademy/trello/dashboard" />;
   } else {
     return (
-      <div>
-        <a href={reqUrl}>Create Trello Token</a>
+      <div className="row justify-content-center">
+        <a className="btn btn-primary" href={reqUrl}>
+          Create Trello Token
+        </a>
       </div>
     );
   }

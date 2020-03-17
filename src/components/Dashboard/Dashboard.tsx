@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { removeToken } from "../../utils/removeToken";
 import { getFromLocalStorage } from "../../utils";
 import { Board } from "./Board";
@@ -51,13 +52,22 @@ export const Dashboard = (props: any) => {
   };
 
   return (
-    <div className="container">
-      <h1 className="h1">DASHBOARD</h1>
+    <div className="container pt-4">
+      <div className="row justify-content-between">
+        <div className="col-lg-6">
+          <h1 className="h1">Панель управления</h1>
+        </div>
+        <div className="col-lg-2">
+          <Link
+            to="/webacademy/trello"
+            className="btn btn-danger"
+            onClick={removeToken}
+          >
+            Выйти
+          </Link>
+        </div>
+      </div>
       <div className="row">{renderBoards()}</div>
-
-      <a href={process.env.REACT_APP_TRELLO_URL} onClick={removeToken}>
-        You can remove token with this link
-      </a>
     </div>
   );
 };

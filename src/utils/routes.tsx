@@ -23,7 +23,8 @@ export const routes = [
   {
     path: "/webacademy/trello",
     render: () => <Redirect to="/webacademy/trello/login" />,
-    exact: true
+    exact: true,
+    title: "Trello App"
   },
   {
     path: "/webacademy/clock",
@@ -37,8 +38,7 @@ export const routes = [
   },
   {
     path: "/webacademy/trello/login",
-    render: () => <Login />,
-    title: "Trello App"
+    render: () => <Login />
   },
   {
     path: "/webacademy/trello/dashboard",
