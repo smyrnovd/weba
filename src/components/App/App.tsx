@@ -1,4 +1,5 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { routes } from "../../utils";
 import { ProtectedRoute } from "../ProtectedRoute";
