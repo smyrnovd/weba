@@ -4,7 +4,7 @@ import "./ClockPage.css";
 import Clock from "./clock/Clock";
 import { getRandomColor } from "../../utils";
 
-export const ClockPage = () => {
+export const ClockPage: React.FC = () => {
   let [index, setIndex] = useState(1);
   let [color, setColor] = useState(getRandomColor());
   let titlePage: string = `Clock view №${index}`;
