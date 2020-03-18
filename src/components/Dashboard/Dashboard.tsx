@@ -28,9 +28,9 @@ export const Dashboard = (props: any) => {
   const renderBoards = () => {
     if (!isFatching) {
       return (
-        <>
+        <div>
           <h2>Data is loading...</h2>
-        </>
+        </div>
       );
     } else {
       return (
@@ -67,7 +67,7 @@ export const Dashboard = (props: any) => {
           </Link>
         </div>
       </div>
-      <div className="row">{renderBoards()}</div>
+      <div className="row justify-content-center">{renderBoards()}</div>
     </div>
   );
 };

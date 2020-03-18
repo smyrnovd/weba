@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { routes } from "../../utils";
 import "./Nav.css";
-export const Nav = () => {
+export const Nav: React.FC = (): JSX.Element => {
   return (
-    <nav className="bg-dark">
-      <div className="d-flex py-2">
-        {routes.map((route: any, i: number) => {
+    <nav className="bg-dark pb-1">
+      <div className="d-flex py-2 justify-content-center">
+        {routes.map((route: any, i: number): JSX.Element | undefined => {
           if (route.title) {
             return (
               <div className="col-lg-1">

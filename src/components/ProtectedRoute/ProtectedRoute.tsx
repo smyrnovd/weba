@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import {
   Route,
   Redirect,
@@ -11,11 +11,11 @@ type ProtectedRouteType = RouteProps & {
   isAuthenticated: boolean;
 };
 
-export const ProtectedRoute: FunctionComponent<ProtectedRouteType> = ({
+export const ProtectedRoute: React.FC<ProtectedRouteType> = ({
   render,
   isAuthenticated,
   ...rest
-}) => {
+}): JSX.Element => {
   return (
     <Route
       {...rest}

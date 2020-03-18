@@ -2,7 +2,7 @@ import React from "react";
 import { isLoggedIn } from "../../utils";
 import { Redirect } from "react-router-dom";
 
-export const Login = () => {
+export const Login: React.FC = (): JSX.Element => {
   const {
     REACT_APP_API_KEY,
     REACT_APP_REDIRECT_URL,
@@ -16,7 +16,7 @@ export const Login = () => {
   } else {
     return (
       <div className="row justify-content-center">
-        <a className="btn btn-primary" href={reqUrl}>
+        <a className="btn btn-primary mt-5" href={reqUrl}>
           Create Trello Token
         </a>
       </div>

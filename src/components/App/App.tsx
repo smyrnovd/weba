@@ -5,8 +5,8 @@ import { routes } from "../../utils";
 import { ProtectedRoute } from "../ProtectedRoute";
 import { Nav } from "../Nav";
 
-export const App = () => {
-  const renderRoute = (route: any, i: number) => {
+export const App: React.FC = (): JSX.Element => {
+  const renderRoute = (route: any, i: number): JSX.Element => {
     if (route.isProtected) {
       return <ProtectedRoute {...route} key={i} />;
     } else {
@@ -21,7 +21,7 @@ export const App = () => {
     }
   };
 
-  const renderContent = () => {
+  const renderContent = (): JSX.Element => {
     return (
       <main>
         <Switch>
