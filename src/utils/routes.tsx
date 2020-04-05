@@ -9,46 +9,45 @@ import { Dashboard } from "../components/Dashboard";
 type RoutesType = {
   path: string;
   exact?: boolean;
-  render: any;
+  render: () => JSX.Element;
   title?: string;
   isProtected?: boolean;
 };
-//ПРОВЕРИТЬ ТИПИЗАЦИЮ
 export const routes = [
   {
     path: "/webacademy",
     render: () => <h1>Choose the application</h1>,
-    exact: true
+    exact: true,
   },
   {
     path: "/webacademy/trello",
     render: () => <Redirect to="/webacademy/trello/login" />,
     exact: true,
-    title: "Trello App"
+    title: "Trello App",
   },
   {
     path: "/webacademy/clock",
     exact: true,
     render: () => <ClockPage />,
-    title: "Clock App"
+    title: "Clock App",
   },
   {
     path: "/webacademy/trello/oauth",
-    render: (props: RouteChildrenProps) => <OAuth {...props} />
+    render: (props: RouteChildrenProps) => <OAuth {...props} />,
   },
   {
     path: "/webacademy/trello/login",
-    render: () => <Login />
+    render: () => <Login />,
   },
   {
     path: "/webacademy/trello/dashboard",
     render: () => <Dashboard />,
-    isProtected: true
+    isProtected: true,
   },
 
   {
     path: "/webacademy/404",
     render: () => <NotFound />,
-    exact: true
-  }
+    exact: true,
+  },
 ];

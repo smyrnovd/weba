@@ -1,11 +1,27 @@
 import React from "react";
 import { RouteChildrenProps, Redirect } from "react-router";
-import { setToLocalStorage } from "../../utils";
+import { connect } from "react-redux";
+import { setToken } from "../../redux";
 
-export const OAuth: React.FC<RouteChildrenProps> = (
-  props: RouteChildrenProps
-): JSX.Element => {
-  const token: string = props.location.hash.split("=")[1];
-  setToLocalStorage(token);
+type OAuthProps = {
+  onSetToken?: (token: string) => void;
+} & RouteChildrenProps;
+
+const OAuth: React.FC<OAuthProps> = ({
+  location: { hash },
+  onSetToken,
+}: OAuthProps): JSX.Element => {
+  const token = hash.split("=")[1];
+  onSetToken && onSetToken(token);
   return <Redirect to="/webacademy/trello/dashboard" />;
 };
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onSetToken: (token: string) => dispatch(setToken(token)),
+  };
+};
+
+const ConnectedOAuth = connect(undefined, mapDispatchToProps)(OAuth);
+
+export { ConnectedOAuth as OAuth };

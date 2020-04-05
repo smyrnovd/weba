@@ -3,15 +3,16 @@ import {
   Route,
   Redirect,
   RouteProps,
-  RouteComponentProps
+  RouteComponentProps,
 } from "react-router-dom";
-import { isLoggedIn } from "../../utils";
+import { connect } from "react-redux";
+import { isAuthenticated } from "../../redux";
 
 type ProtectedRouteType = RouteProps & {
   isAuthenticated: boolean;
 };
 
-export const ProtectedRoute: React.FC<ProtectedRouteType> = ({
+const ProtectedRoute: React.FC<ProtectedRouteType> = ({
   render,
   isAuthenticated,
   ...rest
@@ -20,7 +21,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteType> = ({
     <Route
       {...rest}
       render={(routeCompProps: RouteComponentProps) =>
-        isLoggedIn() ? (
+        isAuthenticated ? (
           render!(routeCompProps)
         ) : (
           <Redirect to="/webacademy/trello/login" />
@@ -29,3 +30,13 @@ export const ProtectedRoute: React.FC<ProtectedRouteType> = ({
     />
   );
 };
+
+const mapStateToProps = (state: any) => {
+  return {
+    isAuthenticated: isAuthenticated(state),
+  };
+};
+
+const ConnectedProtectedRoutes = connect(mapStateToProps)(ProtectedRoute);
+
+export { ConnectedProtectedRoutes as ProtectedRoute };

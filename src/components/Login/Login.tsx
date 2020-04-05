@@ -1,17 +1,22 @@
 import React from "react";
-import { isLoggedIn } from "../../utils";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { isAuthenticated } from "../../redux";
 
-export const Login: React.FC = (): JSX.Element => {
+type LoginProps = {
+  isAuthenticated?: boolean;
+};
+
+const Login: React.FC<LoginProps> = ({ isAuthenticated }): JSX.Element => {
   const {
     REACT_APP_API_KEY,
     REACT_APP_REDIRECT_URL,
     REACT_APP_SCOPE,
-    REACT_APP_NAME
+    REACT_APP_NAME,
   } = process.env;
   const reqUrl: string = `https://trello.com/1/authorize?expiration=1day&name=${REACT_APP_NAME}&scope=${REACT_APP_SCOPE}&response_type=token&key=${REACT_APP_API_KEY}&return_url=${REACT_APP_REDIRECT_URL}`;
 
-  if (isLoggedIn()) {
+  if (isAuthenticated) {
     return <Redirect to="/webacademy/trello/dashboard" />;
   } else {
     return (
@@ -23,3 +28,12 @@ export const Login: React.FC = (): JSX.Element => {
     );
   }
 };
+
+const mapStateToProps = (state: any) => {
+  return {
+    isAuthenticated: isAuthenticated(state),
+  };
+};
+
+const ConnectedLogin = connect(mapStateToProps)(Login);
+export { ConnectedLogin as Login };

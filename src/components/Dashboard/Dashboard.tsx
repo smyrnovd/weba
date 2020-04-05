@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { removeToken } from "../../utils/removeToken";
-import { getFromLocalStorage } from "../../utils";
 import { Board } from "./Board";
+import { getToken } from "../../redux";
+import { connect } from "react-redux";
+import { removeToken } from "../../redux";
 
 //компонет борд
 //роуты для бордов
 //детальный вид борда
-export const Dashboard = (props: any) => {
+
+type DashboardType = {
+  token: string;
+  logOut?: () => void;
+};
+const Dashboard: React.FC<DashboardType> = ({ token, logOut }) => {
   const { REACT_APP_API_KEY } = process.env;
-  const token = getFromLocalStorage();
+  // const token = getFromLocalStorage();
+  console.log(token);
   const url = `https://api.trello.com/1/members/me/boards?filter=all&fields=all&lists=none&memberships=none&organization=false&organization_fields=name%2CdisplayName&key=${REACT_APP_API_KEY}&token=${token}`;
   const [boardsData, setBoardsData] = useState([]);
   const [isFatching, setIsFatching] = useState(false);
@@ -35,7 +42,6 @@ export const Dashboard = (props: any) => {
     } else {
       return (
         <>
-          {console.log(isFatching, boardsData)}
           {boardsData.map(
             (b: any, i: number) =>
               !b.closed && (
@@ -61,7 +67,7 @@ export const Dashboard = (props: any) => {
           <Link
             to="/webacademy/trello"
             className="btn btn-danger"
-            onClick={removeToken}
+            onClick={logOut}
           >
             Выйти
           </Link>
@@ -71,3 +77,22 @@ export const Dashboard = (props: any) => {
     </div>
   );
 };
+
+const mapStateToProps = (state: any) => {
+  return {
+    token: getToken(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    logOut: () => dispatch(removeToken()),
+  };
+};
+
+const ConnectedDashboard = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);
+
+export { ConnectedDashboard as Dashboard };
